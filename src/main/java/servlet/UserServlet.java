@@ -31,7 +31,7 @@ public class UserServlet extends HttpServlet {
             }
 
         } catch(SQLException e) {
-            e.printStackTrace();
+        //    e.printStackTrace();
         }
 
         request.setAttribute("usersList", users);
