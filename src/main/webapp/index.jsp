@@ -1,19 +1,19 @@
-<%@ page import="java.sql.*" %>
-<%@ page import="dao.DBConnection" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
 <html>
 <body>
 <h2>Users List</h2>
+<ul>
 <%
-    try (Connection conn = DBConnection.getConnection()) {
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-
-        while(rs.next()) {
-            out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("username") + ", Password: " + rs.getString("password") + "<br>");
+    List<String> usersList = (List<String>) request.getAttribute("usersList");
+    if(usersList != null){
+        for(String user : usersList){
+%>
+            <li><%= user %></li>
+<%
         }
-    } catch(SQLException e) {
-        out.println("Database error: " + e.getMessage());
     }
 %>
+</ul>
 </body>
 </html>
